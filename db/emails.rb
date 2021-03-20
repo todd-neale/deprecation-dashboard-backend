@@ -62,6 +62,7 @@ Take monday.com everywhere with you
 This email was sent to you regarding your trayses.monday.com account. If you wish to no longer receive emails from us you can unsubscribe."
   },
   {
+    "api" => "Oxford Dictionaries API",
     "from" => "Oxford University Press: Oxford Languages <emailresponses.ac@oup.com>",
     "datetime" => "Thu, 7 May 2020 at 10:01",
     "subject" => "Updates released - Oxford Dictionaries API",
@@ -96,7 +97,8 @@ Our Privacy Policy sets out how Oxford University Press handles your personal in
 Oxford University Press, Great Clarendon Street, Oxford, OX2 6DP
     "
   },
-  {
+{
+  "api" => "LinkedIn API",
   "from" => "'LinkedIn Marketing Developer Team' via Connectors <connectors@tray.io>",
   "datetime" => "Tue, 15 Dec 2020 at 16:01",
   "subject" => "Prepare for these November & December API changes",
@@ -169,7 +171,8 @@ LinkedIn Logo
 
 © 2020, LinkedIn Ireland Ltd. All rights reserved. LinkedIn Ireland Unlimited Company, Gardner House, Wilton Plaza, Wilton Place, Dublin 2, Ireland"
   },
-  {
+{
+  "api" => "Microsoft 365 API",
   "from" => "'Microsoft 365 Message center' via Connectors <connectors@tray.io>",
   "datetime" => "Tue, 9 Feb 2021 at 15:17",
   "subject" => "Message Center Major Change Update Notification",

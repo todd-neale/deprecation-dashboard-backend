@@ -5,9 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Note.destroy_all
+Update.destroy_all
+Email.destroy_all
 
-
-api = Api.new(
+monday = Api.new(
   name:   "Monday API",
   tray_version: "2.0.1",
   latest_version: "2.0.1",
@@ -16,9 +19,9 @@ api = Api.new(
   api_acc_manager: "William Gates | team@monday.com | +447237300021",
   logo_url: "https://4bo0cq4bxnou2rimh3hwzwi8-wpengine.netdna-ssl.com/blog/wp-content/uploads/2018/02/22852120_1266763086768693_6004893502123596052_n.png",
 )
-api.save!
+monday.save!
 
-api = Api.new(
+microsoft = Api.new(
   name:   "Microsoft 365 API",
   tray_version: "2.0.12",
   latest_version: "2.0.12",
@@ -27,40 +30,39 @@ api = Api.new(
   api_acc_manager: "Miranda Gates | conections@microsoft.com | +447237300021",
   logo_url: "https://lh3.googleusercontent.com/proxy/TZ4K3CgwnG6rrZyRKGgMjA92OVVgcNm2FpLeety79gnRvSQmPgHxpXQ3K0sqh7nP8X0NbbFUYXQqex8Y-onj4t6_2kW6eB7a5cXDAy4ZCWJz8ncF",
 )
-api.save!
+microsoft.save!
 
-api = Api.new(
+oxford = Api.new(
   name:   "Oxford Dictionaries API",
   tray_version: "3.1.12",
   latest_version: "3.1.12",
   developer: "unassigned",
   description: "The Oxford Dictionaries API allows easy access to our world-renowned dictionary content. Use the live documentation below to try it out, view real responses, and explore a growing number of code samples to help you get started.",
-  api_contact: "Colin Smith | emailresponses.ac@oup.com | +447237300021",
+  api_acc_manager: "Colin Smith | emailresponses.ac@oup.com | +447237300021",
   logo_url: "https://pbs.twimg.com/profile_images/875679902216970241/NAw23Gdg_400x400.jpg",
 )
-api.save!
+oxford.save!
 
-api = Api.new(
+linkedin = Api.new(
   name:   "LinkedIn API",
   tray_version: "1.5.12",
   latest_version: "1.5.12",
   developer: "unassigned",
   description: "LinkedIn's home for API documentation for all LinkedIn business lines. Our API documentation is organized by business lines covering Consumer, Compliance, Learning, Marketing, Sales, and Talent Solutions. Follow the links below to learn more about business lines and their possible integration types.",
-  api_contact: "Rich Links | connections@microsoft.com | +447237300021",
+  api_acc_manager: "Rich Links | connections@microsoft.com | +447237300021",
   logo_url: "https://www.seekpng.com/png/detail/8-84419_linkedin-logo-png-icon-linkedin-logo-png.png",
 )
-api.save!
+linkedin.save!
 
 require_relative 'emails'
 
 EMAILS.each do |mail|
   update = Update.new(
     api: Api.find_by_name(mail["api"]),
-    from: mail["from"],
-    datetime: mail["datetime"],
+    source: mail["from"],
     title: mail["subject"],
     text: mail["text"]
     )
-  p email.save
+  p update.save
 end
 
