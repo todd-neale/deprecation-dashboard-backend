@@ -5,14 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
 Note.destroy_all
+User.destroy_all
 Update.destroy_all
-Email.destroy_all
+Api.destroy_all
 
 # APIS
 monday = Api.new(
   name:   "Monday API",
+  status: "pending",
   tray_version: "2.0.1",
   latest_version: "2.0.1",
   developer: "unassigned",
@@ -24,8 +25,9 @@ monday.save!
 
 microsoft = Api.new(
   name:   "Microsoft 365 API",
+  status: "pending",
   tray_version: "2.0.12",
-  latest_version: "2.0.12",
+  latest_version: "2.0.11",
   developer: "unassigned",
   description: "Office 365 services, such as OneNote, Outlook, Excel, OneDrive, Microsoft Teams, Planner, and SharePoint, are now exposed in Microsoft Graph. Microsoft Graph is a unified API endpoint for accessing data across Microsoft 365, which includes Office 365, Enterprise Mobility, and Security and Windows services. It provides a simplified developer experience, with one endpoint and a single authentication token that gives your app access to data across all these services.",
   api_acc_manager: "Miranda Gates | conections@microsoft.com | +447237300021",
@@ -35,8 +37,9 @@ microsoft.save!
 
 oxford = Api.new(
   name:   "Oxford Dictionaries API",
+  status: "pending",
   tray_version: "3.1.12",
-  latest_version: "3.1.12",
+  latest_version: "2.8.9",
   developer: "unassigned",
   description: "The Oxford Dictionaries API allows easy access to our world-renowned dictionary content. Use the live documentation below to try it out, view real responses, and explore a growing number of code samples to help you get started.",
   api_acc_manager: "Colin Smith | emailresponses.ac@oup.com | +447237300021",
@@ -46,8 +49,9 @@ oxford.save!
 
 linkedin = Api.new(
   name:   "LinkedIn API",
+  status: "pending",
   tray_version: "1.5.12",
-  latest_version: "1.5.12",
+  latest_version: "1.5.8",
   developer: "unassigned",
   description: "LinkedIn's home for API documentation for all LinkedIn business lines. Our API documentation is organized by business lines covering Consumer, Compliance, Learning, Marketing, Sales, and Talent Solutions. Follow the links below to learn more about business lines and their possible integration types.",
   api_acc_manager: "Rich Links | connections@microsoft.com | +447237300021",
@@ -84,4 +88,18 @@ arthur = User.new(
   )
 arthur.save!
 
+todd = User.new(
+    username: "todd"
+  )
+todd.save!
 
+# notes
+
+Update.all.each do |nota|
+  note = Note.new(
+    text: "Hi Arthur, could you please pick this up on Monday!",
+    update_warning: nota,
+    user: User.first
+  )
+  p note.save
+end
