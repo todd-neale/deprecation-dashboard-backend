@@ -10,6 +10,7 @@ Note.destroy_all
 Update.destroy_all
 Email.destroy_all
 
+# APIS
 monday = Api.new(
   name:   "Monday API",
   tray_version: "2.0.1",
@@ -54,6 +55,7 @@ linkedin = Api.new(
 )
 linkedin.save!
 
+ # emails
 require_relative 'emails'
 
 EMAILS.each do |mail|
@@ -65,4 +67,21 @@ EMAILS.each do |mail|
     )
   p update.save
 end
+
+# users
+alex = User.new(
+    username: "alex"
+  )
+alex.save!
+
+damon = User.new(
+    username: "damon"
+  )
+damon.save!
+
+arthur = User.new(
+    username: "arthur"
+  )
+arthur.save!
+
 
