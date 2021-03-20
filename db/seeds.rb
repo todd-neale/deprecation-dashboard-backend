@@ -91,7 +91,7 @@ arthur.save!
 todd = User.new(
     username: "todd"
   )
-arthur.save!
+todd.save!
 
 # notes
 
