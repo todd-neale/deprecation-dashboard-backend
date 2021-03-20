@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_150533) do
+ActiveRecord::Schema.define(version: 2021_03_20_154355) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2021_03_20_150533) do
     t.string "developer"
     t.text "description"
     t.string "api_acc_manager"
+    t.string "logo_url"
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.string "from"
+    t.datetime "datetime"
+    t.string "subject"
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notes", force: :cascade do |t|
