@@ -54,10 +54,11 @@ api.save!
 require_relative 'emails'
 
 EMAILS.each do |mail|
-  email = Email.new(
+  update = Update.new(
+    api: Api.find_by_name(mail["api"]),
     from: mail["from"],
     datetime: mail["datetime"],
-    subject: mail["subject"],
+    title: mail["subject"],
     text: mail["text"]
     )
   p email.save

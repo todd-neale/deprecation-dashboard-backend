@@ -3,6 +3,6 @@ class Update < ApplicationRecord
   has_many :notes
 
   def self.create_from_email(email)
-    self.create(title: email.subject, status: 'pending', source: email.from, text: email.text)
+    Update.create(title: email.subject, status: 'pending', source: email.from, text: email.text)
   end
 end

@@ -1,5 +1,6 @@
 EMAILS = [
   {
+    "api" => "Monday API",
     "from" => "monday.com <team@monday.com>",
     "datetime" => "Wed, Jul 8, 2020 at 9:12 AM",
     "subject" => "monday.com API V1 deprecation notice",
