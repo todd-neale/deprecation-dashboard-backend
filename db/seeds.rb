@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 api = Api.new(
   name:   "Monday API",
   tray_version: "2.0.1",
@@ -49,4 +50,16 @@ api = Api.new(
   logo_url: "https://www.seekpng.com/png/detail/8-84419_linkedin-logo-png-icon-linkedin-logo-png.png",
 )
 api.save!
+
+require_relative 'emails'
+
+EMAILS.each do |mail|
+  email = Email.new(
+    from: mail["from"],
+    datetime: mail["datetime"],
+    subject: mail["subject"],
+    text: mail["text"]
+    )
+  p email.save
+end
 
