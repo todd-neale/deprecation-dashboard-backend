@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_122738) do
+ActiveRecord::Schema.define(version: 2021_03_20_175210) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -49,6 +49,60 @@ ActiveRecord::Schema.define(version: 2021_03_20_122738) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "apis", force: :cascade do |t|
+    t.string "status"
+    t.string "tray_version"
+    t.string "latest_version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "developer"
+    t.text "description"
+    t.string "api_acc_manager"
+    t.string "logo_url"
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.string "from"
+    t.datetime "datetime"
+    t.string "subject"
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "update_id", null: false
+    t.integer "user_id", null: false
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["update_id"], name: "index_notes_on_update_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "updates", force: :cascade do |t|
+    t.integer "api_id", null: false
+    t.string "status"
+    t.date "change_date"
+    t.string "endpoint"
+    t.text "text"
+    t.string "source"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.index ["api_id"], name: "index_updates_on_api_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "notes", "updates"
+  add_foreign_key "notes", "users"
+  add_foreign_key "updates", "apis"
 end

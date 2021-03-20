@@ -1,4 +1,4 @@
-EMAILS = {
+EMAILS = [
   {
     "from" => "monday.com <team@monday.com>",
     "datetime" => "Wed, Jul 8, 2020 at 9:12 AM",
@@ -211,4 +211,4 @@ Privacy statement
 Microsoft Corporation, One Microsoft Way, Redmond WA 98052 USA
 Microsoft"
   }
-}
+]
