@@ -31,7 +31,7 @@ microsoft = Api.new(
   developer: "unassigned",
   description: "Office 365 services, such as OneNote, Outlook, Excel, OneDrive, Microsoft Teams, Planner, and SharePoint, are now exposed in Microsoft Graph. Microsoft Graph is a unified API endpoint for accessing data across Microsoft 365, which includes Office 365, Enterprise Mobility, and Security and Windows services. It provides a simplified developer experience, with one endpoint and a single authentication token that gives your app access to data across all these services.",
   api_acc_manager: "Miranda Gates | conections@microsoft.com | +447237300021",
-  logo_url: "https://lh3.googleusercontent.com/proxy/TZ4K3CgwnG6rrZyRKGgMjA92OVVgcNm2FpLeety79gnRvSQmPgHxpXQ3K0sqh7nP8X0NbbFUYXQqex8Y-onj4t6_2kW6eB7a5cXDAy4ZCWJz8ncF",
+  logo_url: "https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/microsoft-512.png",
 )
 microsoft.save!
 
