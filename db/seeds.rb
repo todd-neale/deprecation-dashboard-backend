@@ -141,4 +141,4 @@ end
 
 monday.updates.first.update(status: "clear")
 Api.first.update(status: 'clear')
-
+oxford.updates.first.notes.first.destroy
