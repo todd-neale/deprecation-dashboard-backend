@@ -7,6 +7,6 @@ class UpdatesController < ApplicationController
   private
 
   def update_params
-    params.require(:update).permit(:status, :deprecation_date, :endpoint, :source)
+    params.require(:update).permit(:status, :change_date, :endpoint, :source)
   end
 end
