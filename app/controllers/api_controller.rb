@@ -3,6 +3,7 @@ class ApiController < ApplicationController
     apis = Api.all
     updates = Update.all
     notes = Note.all
-    render json: { apis: apis, updates: updates, notes: notes }
+    users = User.all
+    render json: { apis: apis, updates: updates, notes: notes, users: users }
   end
 end
