@@ -1,6 +1,6 @@
 class UpdatesController < ApplicationController
   def create
-    Update.create update_params
+    Update.create create_params
   end
 
   def update
@@ -10,7 +10,11 @@ class UpdatesController < ApplicationController
 
   private
 
+  def create_params
+    params.require(:update).permit(:text, :title, :api_id)
+  end
+
   def update_params
-    params.require(:update).permit(:status, :change_date, :endpoint, :source)
+    params.require(:update).permit(:status, :change_date, :endpoint, :source, :text, :title)
   end
 end
