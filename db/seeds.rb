@@ -5,30 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'json'
+require 'open-uri'
+
 Note.destroy_all
 User.destroy_all
 Update.destroy_all
 Api.destroy_all
 
 # users
-alex = User.new(
-    username: "alex"
-  )
+alex = User.new(username: "alex")
 alex.save!
 
-damon = User.new(
-    username: "damon"
-  )
+damon = User.new(username: "damon")
 damon.save!
 
-arthur = User.new(
-    username: "arthur"
-  )
+arthur = User.new(username: "arthur")
 arthur.save!
 
-todd = User.new(
-    username: "todd"
-  )
+todd = User.new(username: "todd")
 todd.save!
 
 # APIS
@@ -80,6 +75,18 @@ linkedin = Api.new(
 )
 linkedin.save!
 
+@slack = Api.new(
+  name:   "Slack API",
+  status: "pending",
+  tray_version: "172.16.254.1",
+  latest_version: "192.168.1.15",
+  developer: arthur,
+  description: "The Web API supplies a collection of HTTP methods that underpin the majority of Slack app functionality.",
+  api_acc_manager: "Sally Doolally | sally@slack.com | +447237300021",
+  logo_url: "https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd.jpg",
+)
+@slack.save!
+
  # emails
 require_relative 'emails'
 
@@ -93,14 +100,40 @@ EMAILS.each do |mail|
   p update.save
 end
 
+def new_slack_update(update_details)
+  p update_details
+  Update.new(
+    api: @slack,
+    source: update_details['source'],
+    title: update_details['text'].split('.').first,
+    text: update_details['text']
+    )
+end
 
+json_file = File.join(File.dirname(__FILE__), "./seeds/future_slack_changes.json")
+future_slack_changes = JSON.parse(File.read(json_file))
+future_slack_changes.values.each do |update_details|
+  pending_update = new_slack_update(update_details)
+  pending_update.status = "pending"
+  p pending_update.save
+end
+
+json_path = File.join(File.dirname(__FILE__), "./seeds/past_slack_changes.json")
+json_file = File.read(json_path)
+past_slack_changes = JSON.parse(json_file)
+past_slack_changes.values.each do |update_details|
+  clear_update = new_slack_update(update_details)
+  clear_update.status = "clear"
+  p clear_update.save
+end
 # notes
+users = User.all
 
-Update.all.each do |nota|
+Update.all.each do |update|
   note = Note.new(
     text: "Hi Arthur, could you please pick this up on Monday!",
-    update_warning: nota,
-    user: User.first
+    update_warning: update,
+    user: users.sample
   )
   p note.save
 end
